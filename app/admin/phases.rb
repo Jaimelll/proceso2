@@ -32,10 +32,11 @@ ActiveAdmin.register Phase do
   index :title => proc {"BUSCADOR PROCESOS  "}   do
   
   
-    column("proceso", :sortable => :proceso) 
+    column("proceso", :sortable => :proceso)  do |phase|
+      link_to  phase.proceso, admin_phase_activities_path(phase)
+    end
     
-    column("expediente") 
-    column("Convoca", :sortable => :convo) 
+   
     
     column("descripcion") do |phase|
       phase.descripcion.upcase  

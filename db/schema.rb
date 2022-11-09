@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_09_174534) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_181809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_174534) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.integer "actividad"
+    t.string "tipo"
+    t.string "numero"
+    t.date "pfecha"
+    t.date "plan"
+    t.integer "moneda"
+    t.float "importe"
+    t.string "obs"
+    t.bigint "admin_user_id", null: false
+    t.bigint "phase_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_activities_on_admin_user_id"
+    t.index ["phase_id"], name: "index_activities_on_phase_id"
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -99,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_09_174534) do
     t.index ["admin_user_id"], name: "index_products_on_admin_user_id"
   end
 
+  add_foreign_key "activities", "admin_users"
+  add_foreign_key "activities", "phases"
   add_foreign_key "formulas", "admin_users"
   add_foreign_key "formulas", "products"
   add_foreign_key "phases", "admin_users"

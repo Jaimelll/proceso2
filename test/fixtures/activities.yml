@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  actividad: 1
+  tipo: MyString
+  numero: MyString
+  pfecha: 2022-11-09
+  plan: 2022-11-09
+  moneda: 1
+  importe: 1.5
+  obs: MyString
+  admin_user: one
+  phase: one
+
+two:
+  actividad: 1
+  tipo: MyString
+  numero: MyString
+  pfecha: 2022-11-09
+  plan: 2022-11-09
+  moneda: 1
+  importe: 1.5
+  obs: MyString
+  admin_user: two
+  phase: two
