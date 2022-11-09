@@ -55,7 +55,9 @@ show do
          row :nombre
          row :descripcion
          row :orden
-         row :admin_user_id
+         row "Modificado por" do |phase|
+          AdminUser.find_by_id(phase.admin_user_id).email        
+        end 
        end
 
    end

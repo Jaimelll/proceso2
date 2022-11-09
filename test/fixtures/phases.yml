@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nomenclatura: MyString
+  proceso: MyString
+  descripcion: MyString
+  moneda: 1
+  referencial: 1.5
+  estimado: 1.5
+  periodo: 1
+  convocatoria: 1
+  sele: 1
+  sele2: 1.5
+  sele3: MyString
+  sele4: 1
+  sele5: 1
+  sele6: 1
+  sele7: 1
+  obs: MyString
+  admin_user: one
+
+two:
+  nomenclatura: MyString
+  proceso: MyString
+  descripcion: MyString
+  moneda: 1
+  referencial: 1.5
+  estimado: 1.5
+  periodo: 1
+  convocatoria: 1
+  sele: 1
+  sele2: 1.5
+  sele3: MyString
+  sele4: 1
+  sele5: 1
+  sele6: 1
+  sele7: 1
+  obs: MyString
+  admin_user: two

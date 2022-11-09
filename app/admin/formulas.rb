@@ -92,7 +92,9 @@ show do
             row :acti
             row :respon
             row :obs
-            row :admin_user_id
+            row "Modificado por" do |phase|
+              AdminUser.find_by_id(phase.admin_user_id).email
+            end
           end
 
       end
