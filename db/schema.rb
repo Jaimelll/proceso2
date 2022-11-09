@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_174114) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_154410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,8 +41,42 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_174114) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "periodo"
+    t.integer "categoria"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "formulas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.string "obs"
+    t.integer "orden"
+    t.integer "cantidad"
+    t.integer "numero"
+    t.integer "acti"
+    t.integer "respon"
+    t.integer "respon2"
+    t.bigint "admin_user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_formulas_on_admin_user_id"
+    t.index ["product_id"], name: "index_formulas_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.integer "orden"
+    t.string "obs"
+    t.bigint "admin_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_products_on_admin_user_id"
+  end
+
+  add_foreign_key "formulas", "admin_users"
+  add_foreign_key "formulas", "products"
+  add_foreign_key "products", "admin_users"
 end
