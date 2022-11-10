@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root 'admin/grafico#index'
+  root 'admin/dashboard#index'
   
   
   ActiveAdmin.routes(self)

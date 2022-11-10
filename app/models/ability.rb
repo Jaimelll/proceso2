@@ -8,9 +8,9 @@ class Ability
 # sectoristas 21,22,23,29
   case user.categoria # a_variable is the variable we want to compare
      when 1
-       #    can :manage, :all
+        can :manage, :all
         #    can :read, ActiveAdmin::Page, :name =>"Dashboard"
-           can :read, ActiveAdmin::Page, :name =>"grafico"
+         #  can :read, ActiveAdmin::Page, :name =>"grafico"
      else
       #can :manage, :all
       # dar categoria 88 para entrar
