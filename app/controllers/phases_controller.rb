@@ -139,11 +139,12 @@ class PhasesController < InheritedResources::Base
             vferi=Formula.where(product_id:4,cantidad:1).select("TO_DATE(nombre, 'DD/MM/YYYY')").map {|e| e.
              attributes.values}.flatten.compact
               nnddias=0
-           if var1!=" " and var2!=" " then
+         #  if var1!=" " and var2!=" " then
+         if var1 and var2 then
               while  var1<vddia2 
                
                    vddia2=vddia2-1
-                  unless vddia2.wday==0 or  vddia2.wday==6  or vferi.include?(vddia2)
+                  #unless vddia2.wday==0 or  vddia2.wday==6  or vferi.include?(vddia2)
      
                   
                       
@@ -152,7 +153,7 @@ class PhasesController < InheritedResources::Base
      
      
      
-                    end   # unless                     
+                   # end   # unless                     
         
                end #de while
              end
@@ -162,7 +163,18 @@ class PhasesController < InheritedResources::Base
                  return nnddias
         end
      
-      
+        def uobs(idphase,vfin)
+          vdet1=Activity.where(phase_id:idphase).
+          where('pfecha<=? and pfecha<=?', vfin,Time.now).order('pfecha, id').
+          select('obs as dd').last.dd     
+          vdet2=Activity.where(phase_id:idphase).
+          where('pfecha<=? and pfecha<=?', vfin,Time.now).order('pfecha, id').
+          select('pfecha as dd').last.dd.strftime("%d-%m-%Y")
+          
+          vdet=vdet1+" - "+vdet2
+         return  vdet
+       
+        end
     
     
 end

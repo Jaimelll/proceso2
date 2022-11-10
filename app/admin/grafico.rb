@@ -13,8 +13,7 @@ ActiveAdmin.register_page "grafico" do
      #datos de grafico var y titulo, vaf de año fiscal
      @var=Formula.where(product_id:1,numero:1).
                           select('orden as dd').first.dd
-     @titulo=Formula.where(product_id:1,numero:1).
-                          select('nombre as dd').first.dd
+     
       @vaf=current_admin_user.periodo
 
 
@@ -39,11 +38,7 @@ ActiveAdmin.register_page "grafico" do
     @adac=[]
     @adem=[]
     @adpc=[]
-    @adec=[]
-    @aeobac=[]
-    @avefc=[]
-    @avdesi=[]
-    @avenvdes=[]
+    
     @avcan=[]
 
 
@@ -80,11 +75,7 @@ ActiveAdmin.register_page "grafico" do
         @vdac=@vproceso[3]
         @vdem=@vproceso[4]
         @vdpc=@vproceso[5]
-        @vdec=@vproceso[6]
-        @veobac=@vproceso[7]
-        @vefc=@vproceso[8]
-        @vdesi=@vproceso[9]
-        @venvdes=@vproceso[10]
+        
         @vcan=@vproceso[11]
 
 
@@ -101,20 +92,14 @@ ActiveAdmin.register_page "grafico" do
     #@alabels.push(item.pac+"--------"+number_with_delimiter(item.certificado, delimiter: ",").to_s+"----"+@n1)
     #@alabels2.push(item.descripcion.first(10))
     @desc=item.descripcion.underscore
-
-    if @desc[0,3]=='adq' then
-        @desc=@desc[14,54]
-    else
-     @desc=@desc
-
-    end
+    vuobs=phafuncion.uobs(item.id,@vfin)
 
 
     #@alabels.push(item.pac+"--------"+number_with_delimiter(item.certificado, delimiter: ",").to_s+"----"+@n1)
-    @lab1=@desc.capitalize.truncate(70)+"-"+item.proceso
+   # @lab1=@desc.capitalize.truncate(70)+"-"+item.proceso
+   @lab1=@desc.upcase+" - "+item.proceso+" ("+vuobs+" )"
 
-
-
+   
 
 
 
@@ -125,11 +110,7 @@ ActiveAdmin.register_page "grafico" do
        @adac.push(@vdac)
        @adem.push(@vdem)
        @adpc.push(@vdpc)
-       @adec.push(@vdec)
-       @aeobac.push(@veobac)
-       @avefc.push(@vefc)
-       @avdesi.push(@vdesi)
-       @avenvdes.push(@venvdes)
+      
        @avcan.push(@vcan)
 
 
@@ -138,11 +119,7 @@ ActiveAdmin.register_page "grafico" do
     end #terminia  item
     #termina item***********************************************
 
-    if @vtitun then
-    @vtit=@titulo+'-'+@vtitun
-    else
-    @vtit=@titulo
-    end
+    
 
 
     columns do
@@ -160,13 +137,11 @@ ActiveAdmin.register_page "grafico" do
                             :param5 => @adac,
                             :param6 => @adem,
                             :param7 => @adpc,
-                            :param8 => @adec,
-                            :param9 => @aeobac,
-                            :param10 => @avefc,
-                            :param11 => @avdesi,
-                            :param12 => @avenvdes,   
+
+                               
+                            
                             :param13 => @avcan,                                                                                
-                            :param20 =>  @vtit}
+                            :param20 =>  @vtitun}
 
 
            end

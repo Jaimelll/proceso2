@@ -1,4 +1,4 @@
-<h3> Grafico de Seguimiento del Proceso de Compras</h3>
+<h3> Grafico de Seguimiento del Procesos</h3>
 
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,7 @@
     yAxis: {
         min: 2,
         title: {
-            text: 'Seguimiento desde inicio de año hasta la fecha (dias)',
+            text: 'Seguimiento desde inicio de año hasta la fecha',
             align: 'high'
         },
         labels: {
@@ -80,53 +80,34 @@
         }
     },
     series: [
+        
         {
-        name: 'CANCELACION',
-        data: <%= param12%>
-        },
-        {
-        name: 'A DESIERTO',
-        data: <%= param11%>
-        },
-        {
-        name: 'DESIERTO',
-        data: <%= param10%>
-        },
-        {
-        name: 'FC',
-        data: <%= param9%>
-        },
-        {
-        name: 'CONSENTIDO',
-        data: <%= param8%>
-        },
-        {
-        name: 'BPRO',
+        name: 'PAGOS',
         data: <%= param7%>
         },
         {
-        name: 'PROPUESTAS',
+        name: 'ADELANTOS',
         color: 'rgba(255,0,0)',
         data: <%= param6%>
         },
         {
-        name: 'CONVOCADO',
+        name: 'SUSCRIPCIÓN DE CONTRATO',
         color: 'rgba(0,255,0,0.9)',
         data: <%= param5%>
         },
         {
-        name: 'PREVIO',
+        name: 'PROCESO DE CONTRATACIÓN',
         color: 'rgba(255,0,255,0.8)',
         data: <%= param4%>
         },
         {
-        name: 'EPOM',
+        name: 'ACTUACIONES PREVIAS',
         color: 'rgba(255,255,0,0.8)',
         data: <%= param3%>
         },
 
        {
-        name: 'INICIO',
+        name: 'INICIO DE ACTOS PREVIOS',
         color: 'rgba(0,0,0,0.1)',
         data:  <%= param2%>
        }
