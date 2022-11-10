@@ -3,7 +3,7 @@ ActiveAdmin.register Product do
   permit_params :nombre, :descripcion, :orden,
   :obs, :admin_user_id, :created_at, :updated_at
 
-menu  priority: 10, label: "Productos"
+menu  priority: 40, label: "Productos"
 
 
 

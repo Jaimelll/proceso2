@@ -9,11 +9,11 @@ ActiveAdmin.register Phase do
   
 
             
+  phafuncion = PhasesController.new 
 
 
 
-
-  menu priority: 17, label: "Buscador Procesos"
+  menu priority: 20, label: "Buscador Procesos"
   
   
   
@@ -63,15 +63,16 @@ ActiveAdmin.register Phase do
         f.input :proceso , :input_html => { :style =>  'width:30%'}
         f.input :convocatoria , :input_html => { :style =>  'width:30%'}
         f.input :descripcion ,:label => 'Descripcion del bien o servicio'
-        f.input :moneda  
+        f.input :moneda, :as => :select, :collection =>
+                 Formula.where(product_id:2).order('orden').map{|u| [u.nombre, u.orden]} 
         f.input :referencial,:label => 'Valor Referencial', :as => :string, :input_html => { :style =>  'width:30%'}
-        f.input :estimado,:label => 'Valor Estimado', :as => :string, :input_html => { :style =>  'width:30%'}
-        
-        f.input :periodo
+        f.input :estimado,:label => 'Valor Estimado', :as => :string, :input_html => { :style =>  'width:30%'}        
+        f.input :periodo, :as => :select, :collection =>
+                 Formula.where(product_id:1).order('orden').map{|u| [u.descripcion, u.orden]} 
         f.input :admin_user_id, :input_html => { :value => current_admin_user.id }, :as => :hidden
         f.input :obs   
           
-          f.actions   
+        f.actions   
   
   
   
@@ -88,10 +89,15 @@ ActiveAdmin.register Phase do
         row :proceso
         row :convocatoria
         row :descripcion
-        row :moneda 
+        row :moneda do |phase|          
+             phafuncion.form_nomb(2,phase.periodo)
+        end 
         row :referencia
         row :estimado
-        row :periodo 
+        row :periodo do |phase|          
+          phafuncion.form_desc(1,phase.periodo)
+       end
+
         row "Modificado por" do |phase|
           AdminUser.find_by_id(phase.admin_user_id).email        
         end 

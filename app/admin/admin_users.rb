@@ -1,7 +1,7 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation, :categoria, :periodo
 
-  menu  priority: 30, label: "Usuarios"
+  menu  priority: 60, label: "Usuarios"
 
   #actions :all
   

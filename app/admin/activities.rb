@@ -10,7 +10,7 @@ permit_params :actividad, :tipo,:numero, :pfecha,:importe,
               :admin_user_id, :phase_id
 
         
-
+phafuncion = PhasesController.new 
 
  belongs_to :phase  
 #este belong es para no duplicar rutas y para que funcione todo
@@ -19,9 +19,12 @@ filter :pfecha
 
 index :title => "Lista de Actividades Procesos"  do
 
-column("Actividad", :sortable => :phase_id) do |activity|
-  activity.actividad
-end
+column("Actividad", :sortable => :phase_id) do |activity|          
+  phafuncion.form_nomb(3,activity.actividad)
+end 
+
+
+
 column("Fecha ", :sortable => :pfecha) do |activity|
   if activity.pfecha then
     activity.pfecha.strftime("%d-%m-%Y")
@@ -54,12 +57,14 @@ form :title => 'Edicion Actividad'  do |f|
       f.inputs  do
 
 
-             f.input :actividad
+             f.input :actividad, :as => :select, :collection =>
+                     Formula.where(product_id:3).order('orden').map{|u| [u.nombre, u.orden]} 
              f.input :tipo,:label => 'Documento de recepcion', :input_html => { :style =>  'width:30%'}
              f.input :numero,:label => 'Numero de documento', :input_html => { :style =>  'width:30%'}
              f.input :pfecha, :label => 'fecha' , as: :datepicker, :input_html => { :style =>  'width:30%'}
              f.input :importe,:label => 'Importe ',:as =>:string, :input_html => { :style =>  'width:30%'}
-             f.input :moneda
+             f.input :moneda, :as => :select, :collection =>
+             Formula.where(product_id:2).order('orden').map{|u| [u.nombre, u.orden]} 
              f.input :obs,:as =>:string
              f.input :admin_user_id, :input_html => { :value => current_admin_user.id }, :as => :hidden
 
@@ -87,7 +92,10 @@ form :title => 'Edicion Actividad'  do |f|
                     link_to "#{nn}", admin_phase_activities_path(activity.phase_id)
                   end
 
-                  row :actividad 
+                  row :actividad  do |activity|          
+                    phafuncion.form_nomb(3,activity.actividad)
+                  end 
+
                   row "Documento de recepcion" do |activity|
                       activity.tipo
                     end
@@ -111,7 +119,9 @@ form :title => 'Edicion Actividad'  do |f|
 
 
 
-                  row :moneda 
+                  row :moneda  do |activity|          
+                    phafuncion.form_nomb(2,activity.moneda)
+                  end 
 
                   row :obs
                 
