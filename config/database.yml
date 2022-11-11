@@ -22,14 +22,16 @@ test:
   timeout: 5000
 
 production:
-   <<: *default
-     url: <%=ENV["DATABASE_URL"]%>
-    adapter: postgresql
-    encoding: unicode
-    username: railwayapp
-    password: <%=ENV["RAILWAYAPP_DATABASE_PASSWORD"]%>
-    #host: 127.0.0.1
-    port: 5432
-    database: railwayapp_production
-    pool: 5
-    timeout: 5000
+  url: <%= ENV["DATABASE_URL"] %>
+  adapter: postgresql
+  encoding: unicode
+  username: railwayapp
+  password: <%= ENV["RAILWAYAPP_DATABASE_PASSWORD"] %>
+  
+  port: 5432
+  database: railwayapp_production
+  pool: 5
+  timeout: 5000
+
+   
+   
