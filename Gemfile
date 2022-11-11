@@ -14,7 +14,7 @@ gem 'draper'
 gem 'pundit'
 gem 'sass-rails'
 gem 'pg', '~> 1.1'
-gem 'googlecharts'
+#gem 'googlecharts'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

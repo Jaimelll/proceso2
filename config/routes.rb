@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # root 'admin/dashboard#index'
-  root 'admin/grafico#index'
+  root 'admin/dashboard#index'
+ #  root 'admin/grafico#index'
   
   ActiveAdmin.routes(self)
   # comentario postesgres 3
