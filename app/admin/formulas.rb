@@ -93,7 +93,9 @@ show do
             row :respon
             row :obs
             row "Modificado por" do |phase|
+              if phase.admin_user_id then
               AdminUser.find_by_id(phase.admin_user_id).email
+              end
             end
           end
 
